@@ -35,7 +35,7 @@ You *must* copy walletd into the ```walletd-ha``` folder for the easy start proc
 git clone https://github.com/brandonlehmann/walletd-ha.git
 cd walletd-ha
 cp <walletd> .
-./walletd -g -w container.walletd
+./turtle-service -g -w container.walletd
 npm i & node service.js
 ```
 
@@ -51,7 +51,7 @@ npm install -g pm2
 pm2 startup
 pm2 install pm2-logrotate
 
-pm2 start service.js --watch --name walletd
+pm2 start service.js --watch --name turtle-service
 pm2 save
 ```
 
@@ -71,7 +71,7 @@ var wallet = new Walletd({
   saveInterval: 10, // issue an automatic save request every x seconds as long as the wallet is synced
   scanInterval: 5, // scan the wallet for new transactions every x seconds as long as the wallet is synced
   timeout: 2000, // consider RPC calls timed out after x milliseconds
-  path: './walletd', // the path to the walletd binary
+  path: './turtle-service', // the path to the walletd binary
   enableWebSocket: true, // enable the WebSocket server at bindPort + 1
   
   // Standard walletd options start here
@@ -86,7 +86,7 @@ var wallet = new Walletd({
   logFile: false, // The path to the log file you would like walletd to keep
   logLevel: 4, // The log level to use with walletd
   syncFromZero: false, // If set to true, will tell walletd to always sync the container from zero.
-  daemonAddress: '127.0.0.1', // When using a remote node (localNode === false), provide the IP address or hostname of the daemon here
+  daemonAddress: '127.0.0.1', // When using a remote node (localNode === false), provide the IP address or hostname of the daemon RPC here
   daemonPort: 11898, // Remote daemon port
   
   // RPC API default values
